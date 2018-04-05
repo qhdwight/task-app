@@ -8,16 +8,16 @@
         <div class='window-content'>
             <div class='title-bar'>
                 <div class='title-right'>
-                    <svg class='title-icon'>
+                    <svg id='minimize-button' class='title-icon'>
                         <line x1='13' y1='18' x2='23' y2='18' />
                     </svg>
-                    <svg class='title-icon'>
+                    <svg id='maximize-button' class='title-icon'>
                         <line x1='13' y1='13' x2='23' y2='13' />
                         <line x1='23' y1='13' x2='23' y2='23' />
                         <line x1='23' y1='23' x2='13' y2='23' />
                         <line x1='13' y1='23' x2='13' y2='13' />
                     </svg>
-                    <svg class='title-icon'>
+                    <svg id='exit-button' class='title-icon'>
                         <line x1='13' y1='13' x2='23' y2='23' />
                         <line x1='23' y1='13' x2='13' y2='23' />
                     </svg>
@@ -27,5 +27,29 @@
                 
             </div>
         </div>
+        <script>
+            const remote = require('electron').remote;
+            document.getElementById('minimize-button').addEventListener('click', event => {
+                remote.getCurrentWindow().minimize();
+            })
+            document.getElementById('maximize-button').addEventListener('click', event => {
+                const mainWindow = remote.getCurrentWindow();
+                if (mainWindow.isMaximized()) {
+                    mainWindow.unmaximize();
+                } else {
+                    mainWindow.maximize();
+                }
+            });
+            document.getElementById('exit-button').addEventListener('click', event => {
+                const mainWindow = remote.getCurrentWindow().close();
+            });
+            window.onresize = event => {
+                if (screen.width == window.innerWidth && screen.height == window.innerHeight && window.screenX <= 1 && window.screenY <= 1) {
+                    document.body.classList.add('maximized');
+                } else {
+                    document.body.classList.remove('maximized')
+                }
+            };
+        </script>
     </body>
 </html>

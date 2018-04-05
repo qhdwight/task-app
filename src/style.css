@@ -24,6 +24,10 @@ body {
     box-shadow: 0 0 5px #101010;
     margin: 0px;
 }
+body.maximized {
+    box-shadow: none;
+    top: 0px; bottom: 0px; right: 0px; left: 0px;
+}
 h1 {
     font-size: 48px;
 }
@@ -35,8 +39,11 @@ h1, h2, h3, h4, h5, h6, p {
 h1, h2, h3, h4, h5, h6, p, input, button {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
+path {
+    fill: white;
+}
 line {
-    stroke: rgba(150, 150, 150, 1);
+    stroke: rgb(150, 150, 150);
     stroke-width: 1px;
     shape-rendering: crispEdges;
 }
@@ -95,6 +102,23 @@ div.tasks-top-bar {
     height: 24px;
     padding: 0px 24px 0px 24px;
 }
+div.tasks-bottom-bar {
+    display: flex;
+}
+div.tasks-bottom-bar > button {
+    font-size: 15px;
+}
+div#delete-task {
+    margin-left: 20px;
+    display: flex;
+    border: 1px solid lightgray;
+}
+div#delete-task > svg {
+    margin: 5px;
+}
+div#delete-task > p {
+    margin: auto 5px auto 5px;
+}
 div.tasks-top-bar > button {
     margin-left: 10px;
     float: right;
@@ -124,6 +148,7 @@ div.task-item {
 }
 div.task-item > p {
     color: black;
+    word-break: break-all;
 }
 div.task-item:hover {
     border: 2px solid gray;

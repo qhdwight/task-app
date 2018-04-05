@@ -2,7 +2,7 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 
-const { app, BrowserWindow } = electron;
+const { app, BrowserWindow, ipcRenderer } = electron;
 
 var mainWindow;
 
@@ -13,4 +13,7 @@ app.on('ready', () => {
         protocol: 'http',
         slashes: true
     }));
+});
+app.on('maximize', () => {
+    alert('meme');
 });

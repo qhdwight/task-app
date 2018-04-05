@@ -20,8 +20,10 @@ class Tasks extends Component {
     super(props);
     this.tasks = {};
     firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/tasks').once('value', snapshot => {
-      this.tasks = snapshot.val();
-      this.forceUpdate();
+      if (snapshot.val()) {
+        this.tasks = snapshot.val();
+        this.forceUpdate();
+      }
     }, error => {
       alert('An error ocurred: ' + error.message);
     });
@@ -29,17 +31,24 @@ class Tasks extends Component {
   onDrop(event) {
     event.preventDefault();
     const element = document.getElementById(event.dataTransfer.getData('text'));
-    if (element && event.target.classList.contains('task-container')) {
-      element.classList.remove(statusToTaskClassMap[containerClassToStatus[element.parentElement.id]]);
-      event.target.appendChild(element);
-      element.classList.add(statusToTaskClassMap[containerClassToStatus[element.parentElement.id]]);
-      firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/tasks/' + element.id + '/status').set(
-        containerClassToStatus[element.parentElement.id]
-      , error => {
-          if (error) {
-              alert('An error ocurred: ' + error.message);
-          }
-      });
+    if (element) {
+      if (event.target.classList.contains('task-container')) {
+        element.classList.remove(statusToTaskClassMap[containerClassToStatus[element.parentElement.id]]);
+        event.target.appendChild(element);
+        element.classList.add(statusToTaskClassMap[containerClassToStatus[element.parentElement.id]]);
+        firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/tasks/' + element.id + '/status').set(
+          containerClassToStatus[element.parentElement.id]
+        , error => {
+            if (error) {
+                alert('An error occurred: ' + error.message);
+            }
+        });
+      } else if (event.target.id === 'delete-task' || event.target.parentElement.id === 'delete-task') {
+        element.remove();
+        firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/tasks/' + element.id).remove().catch(error => {
+          alert('An error occurred: ' + error.message);
+        })
+      }
     }
   }
   onDragStart(event) {
@@ -82,12 +91,14 @@ class Tasks extends Component {
               { tasks[2] }
             </div>
           </div>
-          { newTaskButton }
+          <div class='tasks-bottom-bar'>
+            { newTaskButton }
+            <div id='delete-task' onDrop={this.onDrop} onDragOver={this.onDragOver}>
+              <p>Drag Task Here to Delete</p>
+              <svg color='white' width="24" height="24" viewBox="0 0 24 24"><path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/></svg>
+            </div>
+          </div>
         </div>
-      );
-    } else {
-      return (
-        { newTaskButton }
       );
     }
   }

@@ -10,16 +10,19 @@ class NewTaskForm extends Component {
     handleSubmit(event) {
         // Prevent form from refreshing page
         event.preventDefault();
-        const task = {
-            name: this.taskName.value,
-            status: 0
-        };
-        firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/tasks').push(task, error => {
-            if (error)
-                alert('An error ocurred: ' + error.message);
-            else
-                TaskApp.renderTasks();
-        });
+        // Make sure this is a valid task name
+        if (this.taskName.value && this.taskName.value.length > 0 && this.taskName.value.length < 300) {
+            const task = {
+                name: this.taskName.value,
+                status: 0
+            };
+            firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/tasks').push(task, error => {
+                if (error)
+                    alert('An error ocurred: ' + error.message);
+                else
+                    TaskApp.renderTasks();
+            });
+        }
     }
     render() {
         return (

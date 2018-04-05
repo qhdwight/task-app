@@ -7,6 +7,7 @@ class SignupForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(event) {
+        event.preventDefault();
         firebase.auth().createUserWithEmailAndPassword(this.email.value, this.password.value).catch(error => {
             alert('An error ocurred: ' + error.message);
         });
