@@ -1,0 +1,111 @@
+/* General */
+input {
+    border: 0px;
+    height: 32px;
+    font-size: 18px;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+input:focus {
+    outline-color: gray;
+    outline-offset: 2px;
+    outline-style: solid;
+    outline-width: 1px;
+}
+html, div.window-content {
+    height: 100%;
+}
+body {
+    position: absolute;
+    top: 5px; bottom: 5px; right: 5px; left: 5px;
+    box-shadow: 0 0 5px #101010;
+    margin: 0px;
+}
+h1 {
+    font-size: 48px;
+}
+h1, h2, h3, h4, h5, h6, p {
+    color: white;
+    margin: 0px;
+    font-weight: normal;
+}
+h1, h2, h3, h4, h5, h6, p, input {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+
+}
+line {
+    stroke: rgba(150, 150, 150, 1);
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+div#main-content {
+    position: absolute;
+    padding: 10px;
+    top: 46px; bottom: 0px; right: 0px; left: 0px;
+}
+div.window-content {
+    background: rgba(38, 50, 56, 1);
+}
+/* Title Bar */
+div.title-bar {
+    background: rgba(34, 45, 50, 1);
+    height: 36px;
+    -webkit-app-region: drag;
+}
+.title-icon:hover {
+    background: rgba(38, 50, 56, 0.95);
+}
+.title-icon {
+    width: 36px;
+    height: 36px;
+}   
+div.title-right  {
+    float: right;
+    -webkit-app-region: no-drag;
+}
+/* Login */
+div#login-container {
+    height: 100%;
+    display: flex;
+}
+div#login-container > form {
+    margin: auto;
+    width: 30%;
+}
+div#login-container > form > input {
+    width: 100%;
+}
+div#login-container > form > input, h1 {
+    margin: 5px 0px 20px 0px;
+}
+div#login-container > form > h1 {
+    text-align: center;
+}
+/* Tasks */
+div.all-task-container {
+    display: flex;
+}
+div.new-container, div.in-progress-container, div.done-container {
+    width: 33.33%;
+    padding: 24px;
+}
+div.task-item {
+    padding: 10px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+div.task-item > p {
+    color: black;
+}
+div.task-item:hover {
+    border: 2px solid gray;
+}
+div.new-task-item {
+    background-color: #E65F5C;
+}
+div.in-progress-task-item {
+    background-color: #FFFF82;
+}
+div.done-task-item {
+    background-color: #4CB963;
+}
