@@ -10,7 +10,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "author": "",
+  "author": "Quintin Dwight",
   "license": "ISC",
   "dependencies": {
     "electron": "^1.8.4",

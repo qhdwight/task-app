@@ -19,7 +19,7 @@ class SignupForm extends Component {
                 <input type='text' ref={email => this.email = email} />
                 <h3>Password</h3>
                 <input type='password' name='password' ref={password => this.password = password} />
-                <input type='submit' name='submit' value='Login' />
+                <input type='submit' name='submit' value='Sign Up' />
             </form>     
         );
     }

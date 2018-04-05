@@ -8,6 +8,7 @@ class Login extends Component {
     return (
         <div id='login-container'>
             <LoginForm />
+            <SignupForm />
         </div>
     );
   }

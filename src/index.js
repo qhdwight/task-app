@@ -17,7 +17,7 @@ firebase.initializeApp(config);
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        const tasks = firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/tasks').on('value', snapshot => {
+        const tasks = firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/tasks').once('value', snapshot => {
             ReactDOM.render(<Tasks tasks = {snapshot.val()}/>, document.getElementById('main-content'));
         }, error => {
             alert('An error ocurred: ' + error.message);
