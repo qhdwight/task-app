@@ -48,6 +48,13 @@ div#main-content {
 div.window-content {
     background: rgba(38, 50, 56, 1);
 }
+::-webkit-scrollbar {
+    width: 4px;
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: white;
+}
 /* Title Bar */
 div.title-bar {
     background: rgba(34, 45, 50, 1);
@@ -66,21 +73,21 @@ div.title-right  {
     -webkit-app-region: no-drag;
 }
 /* Login */
-div#login-container {
+div#form-container {
     height: 100%;
     display: flex;
 }
-div#login-container > form {
+div#form-container > form {
     margin: auto;
     width: 30%;
 }
-div#login-container > form > input {
+div#form-container > form > input {
     width: 100%;
 }
-div#login-container > form > input, h1 {
+div#form-container > form > input, h1 {
     margin: 5px 0px 20px 0px;
 }
-div#login-container > form > h1 {
+div#form-container > form > h1 {
     text-align: center;
 }
 /* Tasks */
@@ -97,10 +104,18 @@ div.tasks-top-bar > p {
 }
 div.all-task-container {
     display: flex;
+    max-height: 80%;
 }
-div.new-container, div.in-progress-container, div.done-container {
+div.task-container-hover {
+    background-color: black !important;
+}
+div#tasks-container {
+    height: 100%;
+}
+div.task-container {
     width: 33.33%;
     padding: 24px;
+    overflow-y: scroll;
 }
 div.task-item {
     padding: 10px;
@@ -121,4 +136,7 @@ div.in-progress-task-item {
 }
 div.done-task-item {
     background-color: #4CB963;
+}
+button.new-task-button {
+    margin-left: 25px;
 }

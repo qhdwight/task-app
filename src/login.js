@@ -6,7 +6,7 @@ import './style.css';
 class Login extends Component {
   render() {
     return (
-        <div id='login-container'>
+        <div id='form-container'>
             <LoginForm />
             <SignupForm />
         </div>
